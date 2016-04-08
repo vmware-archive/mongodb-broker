@@ -1,0 +1,9 @@
+org/springframework/cloud/servicebroker/mongodb/repository/MongoServiceInstanceRepositoryIntegrationTest.class
+org/springframework/cloud/servicebroker/mongodb/fixture/ServiceInstanceFixture.class
+org/springframework/cloud/servicebroker/mongodb/service/MongoAdminServiceUnitTest.class
+org/springframework/cloud/servicebroker/mongodb/fixture/ServiceInstanceBindingFixture.class
+org/springframework/cloud/servicebroker/mongodb/repository/MongoServiceInstanceBindingIntegrationTest.class
+org/springframework/cloud/servicebroker/mongodb/service/MongoAdminServiceIntegrationTest.class
+org/springframework/cloud/servicebroker/mongodb/IntegrationTestBase.class
+org/springframework/cloud/servicebroker/mongodb/service/MongoServiceInstanceBindingServiceTest.class
+org/springframework/cloud/servicebroker/mongodb/service/MongoServiceInstanceServiceTest.class

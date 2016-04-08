@@ -1,0 +1,9 @@
+---
+name: mongo_broker
+
+dependencies: []
+
+files:
+- templates/all_open.json
+- mongo_broker/cloudfoundry-service-broker-0.0.1-SNAPSHOT.jar
+- mongo_broker/manifest.yml

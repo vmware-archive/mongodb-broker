@@ -1,0 +1,7 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+cp -r templates ${BOSH_INSTALL_TARGET}
+
+cp mongo_broker/cloudfoundry-service-broker-0.0.1-SNAPSHOT.jar ${BOSH_INSTALL_TARGET}
+cp mongo_broker/manifest.yml ${BOSH_INSTALL_TARGET}

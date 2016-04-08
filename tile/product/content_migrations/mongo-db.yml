@@ -1,0 +1,40 @@
+---
+product: mongo-db
+installation_version: '1.5'
+to_version: 0.0.8
+migrations:
+- from_version: 0.0.1
+  rules:
+  - type: update
+    selector: product_version
+    to: 0.0.8
+- from_version: 0.0.2
+  rules:
+  - type: update
+    selector: product_version
+    to: 0.0.8
+- from_version: 0.0.3
+  rules:
+  - type: update
+    selector: product_version
+    to: 0.0.8
+- from_version: 0.0.4
+  rules:
+  - type: update
+    selector: product_version
+    to: 0.0.8
+- from_version: 0.0.5
+  rules:
+  - type: update
+    selector: product_version
+    to: 0.0.8
+- from_version: 0.0.6
+  rules:
+  - type: update
+    selector: product_version
+    to: 0.0.8
+- from_version: 0.0.7
+  rules:
+  - type: update
+    selector: product_version
+    to: 0.0.8

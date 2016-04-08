@@ -1,0 +1,11 @@
+org/springframework/cloud/servicebroker/mongodb/service/MongoAdminService.class
+org/springframework/cloud/servicebroker/mongodb/config/MongoConfig.class
+org/springframework/cloud/servicebroker/mongodb/repository/MongoServiceInstanceRepository.class
+org/springframework/cloud/servicebroker/mongodb/config/CatalogConfig.class
+org/springframework/cloud/servicebroker/mongodb/model/ServiceInstance.class
+org/springframework/cloud/servicebroker/mongodb/repository/MongoServiceInstanceBindingRepository.class
+org/springframework/cloud/servicebroker/mongodb/service/MongoServiceInstanceService.class
+org/springframework/cloud/servicebroker/mongodb/model/ServiceInstanceBinding.class
+org/springframework/cloud/servicebroker/mongodb/Application.class
+org/springframework/cloud/servicebroker/mongodb/service/MongoServiceInstanceBindingService.class
+org/springframework/cloud/servicebroker/mongodb/exception/MongoServiceException.class
