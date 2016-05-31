@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.springframework.cloud:spring-cloud-cloudfoundry-service-broker:tests:1.0.0.BUILD-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-cloudfoundry-service-broker/1.0.0.BUILD-SNAPSHOT/spring-cloud-cloudfoundry-service-broker-1.0.0.BUILD-20160414.202759-10-tests.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-cloudfoundry-service-broker/1.0.0.BUILD-SNAPSHOT/spring-cloud-cloudfoundry-service-broker-1.0.0.BUILD-20160414.202759-10-test-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-cloudfoundry-service-broker/1.0.0.BUILD-SNAPSHOT/spring-cloud-cloudfoundry-service-broker-1.0.0.BUILD-20160414.202759-10-test-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

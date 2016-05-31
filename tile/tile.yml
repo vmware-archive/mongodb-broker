@@ -2,7 +2,7 @@
 # The high-level description of your tile.
 # Replace these properties with real values.
 #
-name: mongo-db # By convention lowercase with dashes
+name: mongo-db-for-pcf # By convention lowercase with dashes
 icon_file: resources/mongodb.png
 label: Mongo DB
 description: A Mongo DB Service Broker for the Community Version
