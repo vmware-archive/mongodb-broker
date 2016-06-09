@@ -1,13 +1,13 @@
 ---
 cf_cli/cf-linux-amd64.tgz:
-  object_id: f36a69d6-b4af-4511-9414-1cfdc9eba60f
-  sha: ad1782a564c5bf47270e1bfbe0fdd1298394a1d0
-  size: 6104120
+  object_id: a810f99e-137a-428b-bd11-1e0026203c3f
+  sha: 3eaf57be8dc5230d34c9ff68f66809f182f37f30
+  size: 6895624
 mongo_broker/cloudfoundry-service-broker-0.0.1-SNAPSHOT.jar:
-  object_id: 2a58f786-d776-4b5b-aecc-01331da9aae8
-  sha: 7d01f9cffe05e0e350b91abcc923ac35f23ec746
-  size: 17664403
+  object_id: 861b7a64-42bd-4e35-8b1e-0d2a6666eeb9
+  sha: 9c91ed34d50bd7b46b8196773feb980e3da28974
+  size: 17665241
 mongo_broker/manifest.yml:
-  object_id: 6ea9bf8b-0eae-4a58-a69e-0b387c3cb6d2
+  object_id: 00612602-f6cb-4af4-998f-f40197be4537
   sha: 0e8c125da397ab28bec1c028d1c1cf3db3f67850
   size: 68

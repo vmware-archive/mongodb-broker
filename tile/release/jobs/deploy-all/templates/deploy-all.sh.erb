@@ -61,7 +61,7 @@ function authenticate() {
 
 function setup_target_org() {
 	if [ -z "$CF_ORG" ]; then
-		CF_ORG=mongo-db-org
+		CF_ORG=mongo-db-for-pcf-org
 	fi
 	if ! $CF org $CF_ORG >/dev/null; then
 		cf create-org $CF_ORG
@@ -87,7 +87,7 @@ function setup_org_quota() {
 
 function setup_target_space() {
 	if [ -z "$CF_SPACE" ]; then
-		CF_SPACE=mongo-db-space
+		CF_SPACE=mongo-db-for-pcf-space
 	fi
 	if ! $CF space $CF_SPACE >/dev/null; then
 		cf create-space $CF_SPACE
@@ -298,7 +298,7 @@ apply_open_security_group "$APPLY_OPEN_SECURITY_GROUP"
 #
 
 export PKG_NAME=mongo_broker
-export APP_NAME=mongo-broker-0.0.8
+export APP_NAME=mongo-broker-0.0.9
 export APP_HOST=mongo-broker
 export DOCKER_IMAGE=""
 export NEEDS_CF_CREDS=""
@@ -307,7 +307,7 @@ deploy_app "$PKG_NAME" "$APP_NAME" "$APP_HOST" "$DOCKER_IMAGE" "$NEEDS_CF_CREDS"
 export SVC_NAME="<%= properties.mongo_broker.persistence_store_type %>"
 export SVC_PLAN=""
 provision_auto_service "$PKG_NAME" "$APP_NAME" "$SVC_NAME" "$SVC_PLAN"
-start_app "$PKG_NAME" "$APP_NAME"
+start_app mongo-broker "$APP_NAME"
 
 export BROKER_NAME=mongo-broker
 export BROKER_USER=<%= properties.mongo_broker.user %>

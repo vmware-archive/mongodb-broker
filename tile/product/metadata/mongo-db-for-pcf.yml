@@ -1,0 +1,281 @@
+---
+name: mongo-db-for-pcf
+label: Mongo DB
+description: A Mongo DB Service Broker for the Community Version
+icon_image: iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAMAAADVRocKAAAA7VBMVEX///9EnjXYzsRDmzXv7ez39fP7+vlBmDTl39n08/JAlTOYfmNSrEPMwbeKa0r39vaxqKTRyseUeVykmZNNpT9LqT3W0c7e19Dj4N6nkXvFvrpVrkayn4yvmoRFJhLs6ug7GgDJw8GflI66s6+PgntpVkzEt6ri79+upKB+bGJGKxlWPjKgiXGWyY8/pDA4kiiny6JeSkFROy5hsFVzrGvt9ezb2stwYFaKfXfO5ctRnkRCJAs6GADExapDKBeDcml+uXGLqHDf59g0DABknk9oqF8ylB+MxoPG4cG627RzvGKp1aPL48i8rZ0ynyKBNDuXAAADRklEQVRoge2Wa3+aShCHRwuE9cZNERFFrnKxprFNMW0aci5tmrT2+3+cMwPGeN6V5se7/b9YGGDn2bmwAMDFxcXFxcXFxcXFxcXVSOtHqV3/T9vvbfq/fpoPJusW/T8M5vPO+/YIj/P5fNDZvm2rDOunAQE6rZXhcVIDOl+vW/Ev3RNgjIBvP1sBrCcnwEMrgO+/JoPBfPyGCK9wIzFFEZko1p0iiaIiHo0fWwph/Ab17RWd6jqog7Nwhi5aMllodEWAhzPAzZ8DFNkZxa48jfVNF0CUZ/pQnuIgwX0NuCDAqxp1OOrSYarrMh4O/SmGpc/ECjAZjC9QRwBmjilwHKrVCcczhVJdnzLh+F5KjP0PAF198wwQ+wj4cQagGph2YgVlaApBWZo0QfT8dG9LwLTAN40itMi97ae+p2kAVlKmiXsOcGcjzLxDgCmlC7voBKA3Tc2zMDDyyDdwQGeSH2pamBnghtlub4SrvUDXTC/KogC8K9sMdql1BmDOCHN00J3DYeNgdOvttgb0LsZVyMkOHzdWHkCQBTjkGIebrgQQiwiXWqJtZbj24DOeRCGtaWWcAURnNCVA3B3O9AUD6W0F6PV6l++qB9RcwNl36MK9VQGKgpanLlWQiggLECw10AjvLV3wVhpN+Zy6ZxEsRgKliEodjxYAN2MkdBDwaf0CsLNnQER5QjshAKsB1m5vCeFeAfvWpin5OUDeUJGrGoDc70MdQucUACQvgBUCUkoR2BjRCwDsKA0NdKpllCLIkHUC1MdnwAzH6/fbyafe5YfjZqrmlRt0y26xBvY/Pl40ljgUEbamh6kHszCrdrWiDFcjrILK8bDu0oN0AsRUDiQMxv9efj3uE3aUGZJVZntX8JcFrtvPUs3AQjA1zxM2Le5SU9nfXaWljyQt2ql2lJDjja47w3hBnQlC3Nc38XCxmdZOb+7/+vC8D6mqmjAzURPTUgMV+1/xfD/AdLh4RxVsvGNjBOW+2K1Meg98gwotxfEwRtHug6mJ4xeD9PeXRh8bNwwYc4Od/9szxI+NPshhipkH5cr+fYDcCOBnARNZkjaY0uyPQgjzYl8arNGkRmKm55nt/m1ycXFxcXFxcXFxcXE11n/IEF6GteUyEAAAAABJRU5ErkJggg==
+product_version: '0.0.9'
+metadata_version: '1.5'
+rank: 1
+serial: true
+
+releases:
+- file: mongo-db-for-pcf-0.0.9.tgz
+  name: mongo-db-for-pcf
+  version: '0.0.9'
+
+stemcell_criteria:
+  os: ubuntu-trusty
+  requires_cpi: false
+  version: '3146.7'
+
+property_blueprints:
+#
+# Parameters for the entire product
+#
+- name: org
+  type: string
+  configurable: true
+  default: mongo-db-for-pcf-org
+- name: org_quota
+  type: integer
+  configurable: true
+  constraints:
+    min: 512
+    max: 4096
+  default: 2048
+- name: space
+  type: string
+  configurable: true
+  default: mongo-db-for-pcf-space
+- name: apply_open_security_group
+  type: boolean
+  configurable: true
+  default: True
+- name: allow_paid_service_plans
+  type: boolean
+  configurable: true
+  default: False
+#
+# Standard properties for package mongo_broker
+#
+- name: mongo_broker_enable_global_access_to_plans
+  type: boolean
+  configurable: true
+  default: False
+#
+# Custom properties from the tile.yml file
+#
+- name: mongodb_host # Refer to this elsewhere as (( .properties.mongodb_host ))
+  type: string
+  default: 54.165.221.248
+  configurable: true
+- name: mongodb_port # Refer to this elsewhere as (( .properties.mongodb_port ))
+  type: integer
+  default: 27017
+  configurable: true
+- name: mongodb_username # Refer to this elsewhere as (( .properties.mongodb_username ))
+  type: string
+  default: admin
+  configurable: true
+- name: mongodb_password # Refer to this elsewhere as (( .properties.mongodb_password ))
+  type: secret
+  configurable: true
+- name: mongodb_database # Refer to this elsewhere as (( .properties.mongodb_database ))
+  type: string
+  default: admin
+  configurable: true
+
+form_types:
+#
+# Custom form mongodb-form from the tile.yml file
+#
+- name: mongodb-form
+  label: MongoDB Tile
+  description: Custom Properties for MongoDB Tile
+  property_inputs:
+  - reference: .properties.mongodb_host
+    label: MONGODB HOSTNAME
+    description: MongoDB Host Name
+  - reference: .properties.mongodb_port
+    label: Port
+    description: MongoDB Port Name
+  - reference: .properties.mongodb_username
+    label: MongoDB Username
+    description: MongoDB User Name
+  - reference: .properties.mongodb_password
+    label: MongoDB Password
+    description: MongoDB Password
+  - reference: .properties.mongodb_database
+    label: MongoDB Database
+    description: MongoDB Database
+#
+# Service access form
+#
+- name: service_access
+  label: Service Access
+  description: Determine availability of services
+  property_inputs:
+  - reference: .properties.mongo_broker_enable_global_access_to_plans
+    label: Enable global access to plans of service mongo_broker
+    description: "Enable global access to plans in the marketplace"
+
+job_types:
+#
+# Default compilation job
+#
+- name: compilation
+  resource_label: compilation
+  resource_definitions:
+   - name: ram
+     type: integer
+     configurable: true
+     default: 4096
+   - name: ephemeral_disk
+     type: integer
+     configurable: true
+     default: 10240
+   - name: persistent_disk
+     type: integer
+     configurable: true
+     default: 0
+   - name: cpu
+     type: integer
+     configurable: true
+     default: 2
+  static_ip: 0
+  dynamic_ip: 1
+  max_in_flight: 1
+  instance_definitions:
+    - name: instances
+      type: integer
+      default: 1
+#
+# deploy-all job
+#
+- name: deploy-all
+  resource_label: deploy-all
+  errand: true
+  templates:
+  - name: deploy-all
+    release: mongo-db-for-pcf
+  resource_definitions:
+  - name: ram
+    type: integer
+    configurable: false
+    default: 1024
+  - name: ephemeral_disk
+    type: integer
+    configurable: false
+    default: 4096
+  - name: persistent_disk
+    type: integer
+    configurable: false
+    default: 0
+  - name: cpu
+    type: integer
+    configurable: false
+    default: 1
+  static_ip: 0
+  dynamic_ip: 1
+  max_in_flight: 1
+  instance_definitions:
+  - name: instances
+    type: integer
+    configurable: false
+    default: 1
+  property_blueprints:
+  - name: vm_credentials
+    type: salted_credentials
+    default:
+      identity: vcap
+  - name: app_credentials
+    type: salted_credentials
+  manifest: |
+    domain: (( ..cf.cloud_controller.system_domain.value ))
+    app_domains:
+    - (( ..cf.cloud_controller.apps_domain.value ))
+    org: (( .properties.org.value ))
+    space: (( .properties.space.value ))
+    ssl:
+      skip_cert_verify: (( ..cf.ha_proxy.skip_cert_verify.value ))
+    cf:
+      admin_user: (( ..cf.uaa.system_services_credentials.identity ))
+      admin_password: (( ..cf.uaa.system_services_credentials.password ))
+    org_quota: (( .properties.org_quota.value ))
+    apply_open_security_group: (( .properties.apply_open_security_group.value ))
+    allow_paid_service_plans: (( .properties.allow_paid_service_plans.value ))
+    security:
+      user: (( .deploy-all.app_credentials.identity ))
+      password: (( .deploy-all.app_credentials.password ))
+    mongodb_host: (( .properties.mongodb_host.value ))
+    mongodb_port: (( .properties.mongodb_port.value ))
+    mongodb_username: (( .properties.mongodb_username.value ))
+    mongodb_password: (( .properties.mongodb_password.value ))
+    mongodb_database: (( .properties.mongodb_database.value ))
+    mongo_broker:
+      name: mongo_broker
+      user: (( .deploy-all.app_credentials.identity ))
+      password: (( .deploy-all.app_credentials.password ))
+      enable_global_access_to_plans: (( .properties.mongo_broker_enable_global_access_to_plans.value ))
+#
+# delete-all job
+#
+- name: delete-all
+  resource_label: delete-all
+  errand: true
+  templates:
+  - name: delete-all
+    release: mongo-db-for-pcf
+  resource_definitions:
+  - name: ram
+    type: integer
+    configurable: false
+    default: 1024
+  - name: ephemeral_disk
+    type: integer
+    configurable: false
+    default: 4096
+  - name: persistent_disk
+    type: integer
+    configurable: false
+    default: 0
+  - name: cpu
+    type: integer
+    configurable: false
+    default: 1
+  static_ip: 0
+  dynamic_ip: 1
+  max_in_flight: 1
+  instance_definitions:
+  - name: instances
+    type: integer
+    configurable: false
+    default: 1
+  property_blueprints:
+  - name: vm_credentials
+    type: salted_credentials
+    default:
+      identity: vcap
+  - name: app_credentials
+    type: salted_credentials
+  manifest: |
+    domain: (( ..cf.cloud_controller.system_domain.value ))
+    app_domains:
+    - (( ..cf.cloud_controller.apps_domain.value ))
+    org: (( .properties.org.value ))
+    space: (( .properties.space.value ))
+    ssl:
+      skip_cert_verify: (( ..cf.ha_proxy.skip_cert_verify.value ))
+    cf:
+      admin_user: (( ..cf.uaa.system_services_credentials.identity ))
+      admin_password: (( ..cf.uaa.system_services_credentials.password ))
+
+post_deploy_errands:
+- name: deploy-all
+
+pre_delete_errands:
+- name: delete-all
+
+update:
+  canaries: 1
+  canary_watch_time: 10000-100000
+  max_in_flight: 1
+  update_watch_time: 10000-100000
+
+requires_product_versions:
+- name: cf
+  version: '~> 1.5'
+
+provides_product_versions:
+- name: mongo-db-for-pcf
+  version: '0.0.9'
