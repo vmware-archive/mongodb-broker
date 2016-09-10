@@ -1,0 +1,24 @@
+= MongoDB Service Broker for Pivotal Cloud Foundry
+
+== Getting Started
+
+. You need to install and run MongoDB somewhere.
+
+. Steps to run MongoDB Broker:
++
+* Checkout the MongoDB service broker (this repo) from github
+** Option 1: Upload the .pivotal artifact in mongodb-broker/tile/product/releases to your Ops Manager (tested on and works on Version 1.6.9+) and set up your MongoDB configuration
+** Option 2: Build yourself
++
+----
+$ cd mongodb-broker
+$ mvn clean
+$ mvn package
+$ cd tile
+$ tile init
+$ tile build
+---
++
+. Upload the newly created .pivotal artifact from mongodb-broker/tile/product/releases to your Ops Manager (tested on and works on Version 1.6.9+) and set up your MongoDB configuration as usual
+
+
