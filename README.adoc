@@ -1,5 +1,6 @@
 = MongoDB Service Broker for Pivotal Cloud Foundry
-image:./tile/resources/mongodb.png[]
+
+image:tile/resources/mongodb.png[]
 
 == Getting Started
 
@@ -23,24 +24,7 @@ Import the newly created .pivotal artifact from mongodb-broker/tile/product/rele
 . Create security group needed by the tile config (you can override this if you wish by flipping the flag in tile.yml)
 +
 ----
-$ touch all_open.json
-----
-+
-Copy below template into *all_open.json* 
-+
-----
-[
-    {
-       	"destination": "0.0.0.0-255.255.255.255",
-        "protocol": "all"
-    }
-]
-----
-+
-In same directory as json template, use CF Cli to make add new security group to deployment
-+
-----
-$ cf create-security-group all_open all_open.json
+$ cf create-security-group all_open tile/release/src/templates/all_open.json
 ----
 
 . Use OpsManager to configure and deploy the tile
