@@ -9,7 +9,7 @@
 +
 image:docs/import_mongo.png[]
 
-* *Option 2:* Build yourself: requires link:http://cf-platform-eng.github.io/isv-portal/tile-generator/[Tile Generator] installed
+* *Option 2 (advanced):* Build yourself: requires link:http://cf-platform-eng.github.io/isv-portal/tile-generator/[Tile Generator] installed
 +
 ----
 $ cd mongodb-broker
