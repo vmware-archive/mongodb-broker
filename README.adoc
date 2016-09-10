@@ -25,7 +25,7 @@ Upload the newly created .pivotal artifact from mongodb-broker/tile/product/rele
 $ touch all_open.json
 ----
 +
-. Copy below template into *all_open.json* 
+Copy below template into *all_open.json* 
 +
 ----
 [
@@ -36,9 +36,10 @@ $ touch all_open.json
 ]
 ----
 +
-. In same directory, use CF Cli to make add new security group to deployment
+In same directory as json template, use CF Cli to make add new security group to deployment
 +
 ----
 $ cf create-security-group all_open all_open.json
 ----
-. Configure and deploy the tile
+
+. Use OpsManager to configure and deploy the tile
