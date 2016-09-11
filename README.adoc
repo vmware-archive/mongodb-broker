@@ -7,7 +7,11 @@
 . Checkout the MongoDB service broker (this repo) from github
 * *Option 1 (recommended):* 
 +
-Use Ops Manager to import the *.pivotal* artifact: _mongodb-broker/tile/product/mongo-db-for-pcf-0.0.10.pivotal_ 
+Use Ops Manager to import this repo's included *.pivotal* artifact: 
++
+----
+mongodb-broker/tile/product/mongo-db-for-pcf-0.0.10.pivotal
+----
 +
 image:docs/import_mongo.png[]
 
@@ -23,7 +27,11 @@ $ cd ../tile
 $ tile build
 ----
 +
-Use Ops Manager to import the newly created *.pivotal* artifact: _mongodb-broker/tile/product/mongo-db-for-pcf-0.X.X.pivotal_
+Use Ops Manager to import the newly created *.pivotal* artifact
++
+----
+mongodb-broker/tile/product/mongo-db-for-pcf-0.X.X.pivotal
+----
 
 . Create security group needed by the tile config (you can override this if you wish by flipping the flag in tile.yml)
 +
