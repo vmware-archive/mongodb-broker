@@ -61,8 +61,8 @@ forms:
   properties:
   - name: mongodb_host
     type: string
-    label: MONGODB HOSTNAME
-    default: '54.165.221.248'
+    label: MongoDB Hostname
+    default: 'ops.pcfninja.com'
     description: MongoDB Host Name
   - name: mongodb_port
     type: integer

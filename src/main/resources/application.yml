@@ -1,3 +1,7 @@
+security:
+  user:
+    name: pivotal
+    password: keepitsimple
 mongodb:
-  host: 54.165.221.248
+  host: ops.pcfninja.com
   port: 27017

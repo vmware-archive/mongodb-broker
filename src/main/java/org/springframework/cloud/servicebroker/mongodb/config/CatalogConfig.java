@@ -19,16 +19,17 @@ public class CatalogConfig {
 	public Catalog catalog() {
 		return new Catalog(Collections.singletonList(
 				new ServiceDefinition(
-						"mongodb-service-broker",
-						"MongoDB",
-						"MongoDB service broker implementation for Community Edition",
+						getEnvOrDefault("SERVICE_ID","mongo-service-broker"), //env variable
+						getEnvOrDefault("SERVICE_NAME","MongoDB"), //env variable
+						"MongoDB service broker implementation for Pivotal Cloud Foundry",
 						true,
-						true,
+						false,
 						Collections.singletonList(
-								new Plan("mongo-plan",
-										"Default Mongo Plan",
+								new Plan(getEnvOrDefault("PLAN_ID","mongo-plan"), //env variable
+										"standard",
 										"This is a default mongo plan.  All services are created equally.",
-										getPlanMetadata())),
+										getPlanMetadata(),
+										true)),
 						Arrays.asList("mongodb", "document"),
 						getServiceDefinitionMetadata(),
 						null,
@@ -49,32 +50,27 @@ public class CatalogConfig {
 	}
 	
 	private Map<String,Object> getPlanMetadata() {
-		Map<String, Object> planMetadata = new HashMap<>();
-		planMetadata.put("costs", getCosts());
+		Map<String,Object> planMetadata = new HashMap<>();
 		planMetadata.put("bullets", getBullets());
-
-
 		return planMetadata;
 	}
 
-	private List<Map<String,Object>> getCosts()
-		{
-		Map<String,Object> costsMap = new HashMap<>();
-		
-		Map<String,Object> amount = new HashMap<>();
-		amount.put("usd", 0.0);
-	
-		costsMap.put("amount", amount);
-		costsMap.put("unit", "MONTHLY");
 
-		List costMapList = Collections.singletonList(costsMap);
-		return costMapList;
-		}
 	
 	private List<String> getBullets() {
 		return Arrays.asList("Shared MongoDB server", 
 				"100 MB Storage (not enforced)", 
 				"40 concurrent connections (not enforced)");
+	}
+	
+	private String getEnvOrDefault(final String variable, final String defaultValue){
+		String value = System.getenv(variable);
+		if(value != null){
+			return value;
+		}
+		else{
+			return defaultValue;
+		}
 	}
 	
 }

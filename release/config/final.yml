@@ -1,6 +1,0 @@
----
-blobstore:
-  provider: local
-  options:
-    blobstore_path: /tmp/mongodb-broker-blobs
-final_name: mongodb-broker

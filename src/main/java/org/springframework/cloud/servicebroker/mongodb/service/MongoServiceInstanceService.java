@@ -43,7 +43,7 @@ public class MongoServiceInstanceService implements ServiceInstanceService {
 	
 	@Override
 	public CreateServiceInstanceResponse createServiceInstance(CreateServiceInstanceRequest request) {
-		// TODO MongoDB dashboard
+		// make sure we haven't provisioned this before (check broker database)
 		ServiceInstance instance = repository.findOne(request.getServiceInstanceId());
 		if (instance != null) {
 			throw new ServiceInstanceExistsException(request.getServiceInstanceId(), request.getServiceDefinitionId());
@@ -60,8 +60,9 @@ public class MongoServiceInstanceService implements ServiceInstanceService {
 		if (db == null) {
 			throw new ServiceBrokerException("Failed to create new DB instance: " + instance.getServiceInstanceId());
 		}
+		//save to broker database for record keeping
 		repository.save(instance);
-
+                
 		return new CreateServiceInstanceResponse();
 	}
 
@@ -77,12 +78,14 @@ public class MongoServiceInstanceService implements ServiceInstanceService {
 	@Override
 	public DeleteServiceInstanceResponse deleteServiceInstance(DeleteServiceInstanceRequest request) throws MongoServiceException {
 		String instanceId = request.getServiceInstanceId();
+		//locate record in broker database
 		ServiceInstance instance = repository.findOne(instanceId);
 		if (instance == null) {
 			throw new ServiceInstanceDoesNotExistException(instanceId);
 		}
-
+                // delete mongo database
 		mongo.deleteDatabase(instanceId);
+		// delete record from broker database
 		repository.delete(instanceId);
 		return new DeleteServiceInstanceResponse();
 	}
