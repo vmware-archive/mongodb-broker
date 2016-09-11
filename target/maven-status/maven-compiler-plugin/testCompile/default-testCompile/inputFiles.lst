@@ -1,9 +1,0 @@
-/Users/miyer/GitHub/mongodb-broker/src/test/java/org/springframework/cloud/servicebroker/mongodb/repository/MongoServiceInstanceBindingIntegrationTest.java
-/Users/miyer/GitHub/mongodb-broker/src/test/java/org/springframework/cloud/servicebroker/mongodb/service/MongoAdminServiceUnitTest.java
-/Users/miyer/GitHub/mongodb-broker/src/test/java/org/springframework/cloud/servicebroker/mongodb/IntegrationTestBase.java
-/Users/miyer/GitHub/mongodb-broker/src/test/java/org/springframework/cloud/servicebroker/mongodb/repository/MongoServiceInstanceRepositoryIntegrationTest.java
-/Users/miyer/GitHub/mongodb-broker/src/test/java/org/springframework/cloud/servicebroker/mongodb/fixture/ServiceInstanceFixture.java
-/Users/miyer/GitHub/mongodb-broker/src/test/java/org/springframework/cloud/servicebroker/mongodb/service/MongoServiceInstanceBindingServiceTest.java
-/Users/miyer/GitHub/mongodb-broker/src/test/java/org/springframework/cloud/servicebroker/mongodb/fixture/ServiceInstanceBindingFixture.java
-/Users/miyer/GitHub/mongodb-broker/src/test/java/org/springframework/cloud/servicebroker/mongodb/service/MongoAdminServiceIntegrationTest.java
-/Users/miyer/GitHub/mongodb-broker/src/test/java/org/springframework/cloud/servicebroker/mongodb/service/MongoServiceInstanceServiceTest.java

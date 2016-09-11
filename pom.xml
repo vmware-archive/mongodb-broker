@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.springframework.cloud</groupId>
-	<artifactId>cloudfoundry-service-broker</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>mongodb-service-broker</artifactId>
+	<version>0.0.1-RELEASE</version>
 	<packaging>jar</packaging>
 
 	<name>cloudfoundry-service-broker</name>
