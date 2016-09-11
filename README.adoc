@@ -1,5 +1,5 @@
 = MongoDB Service Broker for Pivotal Cloud Foundry 
-=== Tested with MongoDB 2.6, and PCF 1.6.9+
+Tested with MongoDB 2.6, and PCF 1.6.9+
 
 == Getting Started
 
