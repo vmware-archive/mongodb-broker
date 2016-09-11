@@ -3,6 +3,17 @@
 == Getting Started
 
 . Install and run MongoDB somewhere accessable by Cloud Foundry
+* If necessary, create a new authorized admin user for pcf to provision with
++
+----
+$ mongo --host yourhost admin -u username -p password
+> use admin
+> db.createUser({
+	user: "pcfadmin",
+	pwd: "changeme",
+	roles: [ "root", "userAdminAnyDatabase" ]
+})
+----
 
 . Checkout the MongoDB service broker (this repo) from github
 * *Option 1 (recommended):* 
