@@ -31,8 +31,7 @@ public class MongoServiceInstanceBindingService implements ServiceInstanceBindin
 	private MongoServiceInstanceBindingRepository bindingRepository;
 
 	@Autowired
-	public MongoServiceInstanceBindingService(MongoAdminService mongo,
-											  MongoServiceInstanceBindingRepository bindingRepository) {
+	public MongoServiceInstanceBindingService(MongoAdminService mongo, MongoServiceInstanceBindingRepository bindingRepository) {
 		this.mongo = mongo;
 		this.bindingRepository = bindingRepository;
 	}
@@ -50,13 +49,14 @@ public class MongoServiceInstanceBindingService implements ServiceInstanceBindin
 
 		String database = serviceInstanceId;
 		String username = bindingId;
+
+		/* Generates a random password for the service instance */
 		String password = RandomStringUtils.randomAlphanumeric(20);
 		
 
 		mongo.createUser(database, username, password);
 		
-		Map<String, Object> credentials =
-				Collections.singletonMap("uri", (Object) mongo.getConnectionString(database, username, password));
+		Map<String, Object> credentials = Collections.singletonMap("uri", (Object) mongo.getConnectionString(database, username, password));
 
 		binding = new ServiceInstanceBinding(bindingId, serviceInstanceId, credentials, null, request.getBoundAppGuid());
 		bindingRepository.save(binding);
