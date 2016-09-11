@@ -5,22 +5,21 @@
 . Install and run MongoDB somewhere accessable by Cloud Foundry
 
 . Checkout the MongoDB service broker (this repo) from github
-* *Option 1 (recommended):* Import the *.pivotal* artifact in _mongodb-broker/tile/product_ to your Ops Manager (tested on and works on Version 1.6.9+)
+* *Option 1 (recommended):* Import the *.pivotal* artifact in _mongodb-broker/tile/product/mongo-db-for-pcf-0.0.10.pivotal_ to your Ops Manager (tested on and works on Version 1.6.9+)
 +
 image:docs/import_mongo.png[]
 
 * *Option 2 (advanced):* Build yourself: requires link:http://cf-platform-eng.github.io/isv-portal/tile-generator/[Tile Generator] installed
 +
 ----
-$ cd mongodb-broker
+$ cd mongodb-broker/service-broker
 $ mvn clean
 $ mvn package
-$ cd tile
-$ tile init
+$ cd ../tile
 $ tile build
 ----
 +
-Import the newly created *.pivotal* artifact from _mongodb-broker/tile/product_ to your Ops Manager (tested on and works on Version 1.6.9+)
+Import the newly created *.pivotal* artifact from _mongodb-broker/tile/product/mongo-db-for-pcf-0.X.X.pivotal_ to your Ops Manager (tested on and works on Version 1.6.9+)
 
 . Create security group needed by the tile config (you can override this if you wish by flipping the flag in tile.yml)
 +
@@ -38,5 +37,5 @@ image:docs/mongo_market.png[]
 
 == Congratulations!
 
-You have just deployed a custom service broker to connect to an external service!
+You have just deployed a custom service broker tile to auto-provision against an externally hosted MongoDB service!
 
