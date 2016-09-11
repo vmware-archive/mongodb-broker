@@ -25,7 +25,7 @@ packages:
 - name: mongo-broker
   type: app-broker
   manifest:
-    path: ../target/cloudfoundry-service-broker-0.0.1-SNAPSHOT.jar
+    path: ../target/mongodb-service-broker-0.0.1-RELEASE.jar
 #   command: python app.py
     memory: 1G
 
