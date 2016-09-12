@@ -21,7 +21,7 @@ public class CatalogConfig {
 				new ServiceDefinition(
 						getEnvOrDefault("SERVICE_ID","mongo-service-broker"), //env variable
 						getEnvOrDefault("SERVICE_NAME","MongoDB"), //env variable
-						"MongoDB service broker implementation for Pivotal Cloud Foundry",
+						"MongoDB service broker implementation for externally hosted instances",
 						true,
 						false,
 						Collections.singletonList(
@@ -44,8 +44,8 @@ public class CatalogConfig {
 		sdMetadata.put("imageUrl", "http://info.mongodb.com/rs/mongodb/images/MongoDB_Logo_Full.png");
 		sdMetadata.put("longDescription", "MongoDB Service");
 		sdMetadata.put("providerDisplayName", "Pivotal");
-		sdMetadata.put("documentationUrl", "https://github.com/spring-cloud-samples/cloudfoundry-mongodb-service-broker");
-		sdMetadata.put("supportUrl", "https://github.com/spring-cloud-samples/cloudfoundry-mongodb-service-broker");
+		sdMetadata.put("documentationUrl", "https://github.com/bbertka-pivotal/https://github.com/bbertka-pivotal/mongodb-broker");
+		sdMetadata.put("supportUrl", "https://github.com/bbertka-pivotal/https://github.com/bbertka-pivotal/mongodb-broker");
 		return sdMetadata;
 	}
 	
