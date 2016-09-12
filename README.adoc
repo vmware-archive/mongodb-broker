@@ -22,7 +22,7 @@ $ mongo --host yourhost admin -u username -p password
 Use Ops Manager to import this repo's included *.pivotal* artifact: 
 +
 ----
-mongodb-broker/tile/product/mongo-db-for-pcf-0.0.11.pivotal
+mongodb-broker/tile/product/mongo-db-for-pcf-0.1.8.pivotal
 ----
 +
 image:docs/import_mongo.png[]
