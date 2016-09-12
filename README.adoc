@@ -22,7 +22,7 @@ $ mongo --host yourhost admin -u username -p password
 Use Ops Manager to import this repo's included *.pivotal* artifact: 
 +
 ----
-mongodb-broker/tile/product/mongo-db-for-pcf-0.0.10.pivotal
+mongodb-broker/tile/product/mongo-db-for-pcf-0.0.11.pivotal
 ----
 +
 image:docs/import_mongo.png[]
@@ -61,5 +61,5 @@ image:docs/mongo_market.png[]
 
 == Congratulations!
 
-You have just deployed a custom service broker tile to auto-provision against an externally hosted MongoDB service!
+You can now auto-provision externally hosted MongoDB services!
 
