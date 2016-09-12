@@ -1,7 +1,7 @@
 security:
   user:
-    name: pivotal
-    password: keepitsimple
+    name: admin
+    password: password
 mongodb:
-  host: ops.pcfninja.com
+  host: mongo.yourdomain.com
   port: 27017
