@@ -1,0 +1,82 @@
+---
+# The high-level description of your tile.
+# Replace these properties with real values.
+#
+name: mongo-db-for-pcf # By convention lowercase with dashes
+icon_file: resources/mongodb.png
+label: Mongo DB
+description: A Community Mongo DB Service Broker for Cloud Foundry
+
+# Global defaults (all optional)
+#
+# org: test-org                         # Name of org to create for your apps
+# org_quota: 4096                       # Memory quota for that org in MB
+# space: test-space                     # Name of space to create for your apps
+
+apply_open_security_group: true         # Apply open security group, default: false
+
+properties:
+- name: author
+  type: string
+  label: Author
+  value: bbertka@pivotal.io
+
+forms:
+- name: mongodb-form
+  label: MongoDB Tile
+  description: Custom Properties for MongoDB Tile
+  properties:
+  - name: mongodb_host
+    type: string
+    label: MongoDB Hostname
+    default: 'mongo.yourdomain.com'
+    description: MongoDB Host Name
+  - name: mongodb_port
+    type: integer
+    label: Port
+    default: '27017'
+    description: MongoDB Port Name
+  - name: mongodb_username
+    type: string
+    label: MongoDB Username
+    default: 'admin'
+    description: MongoDB User Name
+  - name: mongodb_password
+    type: secret
+    label: MongoDB Password
+    description: MongoDB Password
+  - name: mongodb_database
+    type: string
+    label: MongoDB Database
+    default: 'pcf'
+    description: MongoDB Database
+
+packages:
+- name: mongo-broker
+  type: app-broker
+  manifest:
+    path: service-broker/target/mongodb-service-broker-0.0.1-RELEASE.jar
+    memory: 1G
+- name: docker-mongo
+  type: docker-bosh
+  docker_images:
+  - frodenas/mongodb
+  cpu: 2
+  memory: 1G
+  ephemeral_disk: 4096
+  persistent_disk: 2048
+  instances: 1
+  manifest: |
+    containers:
+    - name: mongodb
+      image: "frodenas/mongodb"
+      command: "--rest --httpinterface"
+      bind_ports:
+      - '27017:27017'
+      - '28017:28017'
+      bind_volumes:
+      - "/data/db"
+      env_vars:
+      - "MONGODB_DBNAME=((.properties.mongodb_database.value))"
+      - "MONGODB_USERNAME=((.properties.mongodb_username.value))"
+      - "MONGODB_PASSWORD=((.properties.mongodb_password.value))"

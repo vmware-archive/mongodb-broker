@@ -3,31 +3,7 @@ Tested with MongoDB 2.6, and PCF 1.6.9+
 
 == Getting Started
 
-. Install and run MongoDB somewhere accessable by Cloud Foundry
-* If necessary, create a new authorized admin user for pcf to provision with
-+
-----
-$ mongo --host yourhost admin -u username -p password
-> use admin
-> db.createUser({
-	user: "pcfadmin",
-	pwd: "changeme",
-	roles: [ "root", "userAdminAnyDatabase" ]
-})
-----
-
 . Checkout the MongoDB service broker (this repo) from github
-* *Option 1 (recommended):* 
-+
-Use Ops Manager to import this repo's included *.pivotal* artifact: 
-+
-----
-mongodb-broker/tile/product/mongo-db-for-pcf-0.1.8.pivotal
-----
-+
-image:docs/import_mongo.png[]
-
-* *Option 2 (advanced):* 
 +
 Build yourself: requires link:http://cf-platform-eng.github.io/isv-portal/tile-generator/[Tile Generator] installed
 +
@@ -35,20 +11,20 @@ Build yourself: requires link:http://cf-platform-eng.github.io/isv-portal/tile-g
 $ cd mongodb-broker/service-broker
 $ mvn clean
 $ mvn package
-$ cd ../tile
+$ cd ..
 $ tile build
 ----
 +
 Use Ops Manager to import the newly created *.pivotal* artifact
 +
 ----
-mongodb-broker/tile/product/mongo-db-for-pcf-0.X.X.pivotal
+mongodb-broker/product/mongo-db-for-pcf-0.X.X.pivotal
 ----
 
 . Create security group needed by the tile config (you can override this if you wish by flipping the flag in tile.yml)
 +
 ----
-$ cf create-security-group all_open tile/release/src/templates/all_open.json
+$ cf create-security-group all_open release/src/templates/all_open.json
 ----
 
 . Use OpsManager to configure and deploy the tile
@@ -61,5 +37,5 @@ image:docs/mongo_market.png[]
 
 == Congratulations!
 
-You can now auto-provision externally hosted MongoDB services!
+You can now auto-provision to a Docker backed MongoDB instance!
 

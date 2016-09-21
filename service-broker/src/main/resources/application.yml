@@ -3,5 +3,5 @@ security:
     name: admin
     password: password
 mongodb:
-  host: mongo.yourdomain.com
+  host: localhost
   port: 27017
