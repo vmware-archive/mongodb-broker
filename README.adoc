@@ -2,10 +2,23 @@
 Tested with MongoDB 2.6, and PCF 1.6.9+
 
 == Getting Started
-
-. Checkout the MongoDB service broker (this repo) from github
+. Download the frodenas/mongodb Docker image
 +
-Build yourself: requires link:http://cf-platform-eng.github.io/isv-portal/tile-generator/[Tile Generator] installed
+----
+$ docker pull frodenas/mongodb:2.6
+----
+
+. Upload Docker-bosh release using link:https://bosh.io/docs/bosh-cli.html[Bosh CLI]
++
+----
+$ bosh target BOSH_HOST
+$ cd docker-boshrelease
+$ bosh upload release bosh upload release https://bosh.io/d/github.com/cf-platform-eng/docker-boshrelease
+----
+
+. Clone the MongoDB service broker (this repo) from github
+
+. Build tile packages: requires link:http://cf-platform-eng.github.io/isv-portal/tile-generator/[Tile Generator] installed
 +
 ----
 $ cd mongodb-broker/service-broker
@@ -14,8 +27,8 @@ $ mvn package
 $ cd ..
 $ tile build
 ----
-+
-Use Ops Manager to import the newly created *.pivotal* artifact
+
+. Use Ops Manager to import the newly created *.pivotal* artifact
 +
 ----
 mongodb-broker/product/mongo-db-for-pcf-0.X.X.pivotal
