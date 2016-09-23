@@ -3,7 +3,7 @@
 # Replace these properties with real values.
 #
 name: mongo-db-for-pcf # By convention lowercase with dashes
-icon_file: resources/mongodb.png
+icon_file: resources/cf-community.png
 label: Mongo DB
 description: A Community Mongo DB Service Broker for Cloud Foundry
 
@@ -51,20 +51,23 @@ forms:
     default: 'pcf'
     description: MongoDB Database
 
+#packages:
+#- name: mongo-broker
+#  type: app-broker
+#  manifest:
+#    path: service-broker/target/mongodb-service-broker-0.0.1-RELEASE.jar
+#    memory: 1G
+
 packages:
-- name: mongo-broker
-  type: app-broker
-  manifest:
-    path: service-broker/target/mongodb-service-broker-0.0.1-RELEASE.jar
-    memory: 1G
 - name: docker-mongo
   type: docker-bosh
   docker_images:
   - frodenas/mongodb
+  instance_type: 'c4.large'
   cpu: 2
-  memory: 1G
-  ephemeral_disk: 4096
-  persistent_disk: 2048
+  memory: 3840
+  ephemeral_disk: 8192
+  persistent_disk: 4096
   instances: 1
   manifest: |
     containers:
