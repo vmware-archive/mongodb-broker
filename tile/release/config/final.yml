@@ -1,6 +1,0 @@
----
-blobstore:
-  provider: local
-  options:
-    blobstore_path: /tmp/mongo-db-for-pcf-blobs
-final_name: mongo-db-for-pcf

@@ -1,0 +1,82 @@
+---
+name: mongodb 
+icon_file: resources/cf-mongodb.png
+label: MongoDB
+description: A Community MongoDB Service Broker for Cloud Foundry
+
+apply_open_security_group: true         # Apply open security group, default: false
+
+properties:
+- name: author
+  type: string
+  label: Author
+  value: bbertka@pivotal.io
+
+docker_release:
+ - name: docker
+   version: latest
+
+stemcell_criteria:
+  version: '3262.12'
+
+forms:
+- name: mongodb-form
+  label: Broker Config
+  description: Custom Properties for MongoDB Service Broker
+  properties:
+  - name: mongodb_host
+    type: string
+    label: MongoDB Hostname
+    default: 'mongo.yourdomain.com'
+    description: MongoDB Host Name
+  - name: mongodb_port
+    type: integer
+    label: Port
+    default: '27017'
+    description: MongoDB Port Name
+  - name: mongodb_username
+    type: string
+    label: MongoDB Username
+    default: 'admin'
+    description: MongoDB User Name
+  - name: mongodb_password
+    type: secret
+    label: MongoDB Password
+    description: MongoDB Password
+  - name: mongodb_database
+    type: string
+    label: MongoDB Database
+    default: 'pcf'
+    description: MongoDB Database
+
+packages:
+- name: mongo-broker
+  type: app-broker
+  manifest:
+    path: service-broker/target/mongodb-service-broker-0.0.1-RELEASE.jar
+    memory: 1G
+- name: mongodb
+  type: docker-bosh
+  docker_images:
+  - frodenas/mongodb:2.6
+  instance_type: 'c4.large'
+  cpu: 2
+  memory: 3840
+  ephemeral_disk: 8192
+  #persistent_disk: 4096
+  persistent_disk: 65536
+  instances: 1
+  manifest: |
+    containers:
+    - name: mongodb
+      image: "frodenas/mongodb:2.6"
+      command: "--rest --httpinterface"
+      bind_ports:
+      - '27017:27017'
+      - '28017:28017'
+      bind_volumes:
+      - "/data/db"
+      env_vars:
+      - "MONGODB_DBNAME=((.properties.mongodb_database.value))"
+      - "MONGODB_USERNAME=((.properties.mongodb_username.value))"
+      - "MONGODB_PASSWORD=((.properties.mongodb_password.value))"

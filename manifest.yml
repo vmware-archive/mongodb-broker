@@ -1,7 +1,0 @@
----
-applications:
-- name: mongodb-service-broker
-  memory: 1G
-  instances: 1
-  path: target/cloudfoundry-service-broker-0.0.1-SNAPSHOT.jar
-  random-route: true

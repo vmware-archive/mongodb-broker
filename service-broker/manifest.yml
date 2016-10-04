@@ -1,0 +1,4 @@
+---
+applications:
+- name: mongo-broker
+  path: target/mongodb-service-broker-0.0.1-RELEASE.jar
