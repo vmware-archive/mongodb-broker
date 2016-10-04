@@ -16,69 +16,72 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 /**
  * Mongo impl to bind services.  Binding a service does the following:
- * creates a new user in the database (currently uses a default pwd of "password"),
- * saves the ServiceInstanceBinding info to the Mongo repository.
- *  
- * @author sgreenberg@pivotal.io
+ * creates a database
+ * creates a new user in the database (currently uses a default pwd of "password")
+ * saves the ServiceInstanceBinding info to the Mongo "admin" repository
+ *
  */
 @Service
 public class MongoServiceInstanceBindingService implements ServiceInstanceBindingService {
 
-	private MongoAdminService mongo; 
+    private MongoAdminService mongo;
 
-	private MongoServiceInstanceBindingRepository bindingRepository;
+    private MongoServiceInstanceBindingRepository bindingRepository;
 
-	@Autowired
-	public MongoServiceInstanceBindingService(MongoAdminService mongo, MongoServiceInstanceBindingRepository bindingRepository) {
-		this.mongo = mongo;
-		this.bindingRepository = bindingRepository;
-	}
-	
-	@Override
-	public CreateServiceInstanceBindingResponse createServiceInstanceBinding(CreateServiceInstanceBindingRequest request) {
+    @Autowired
+    public MongoServiceInstanceBindingService(MongoAdminService mongo,
+                                              MongoServiceInstanceBindingRepository bindingRepository) {
+        this.mongo = mongo;
+        this.bindingRepository = bindingRepository;
+    }
 
-		String bindingId = request.getBindingId();
-		String serviceInstanceId = request.getServiceInstanceId();
+    @Override
+    public CreateServiceInstanceBindingResponse createServiceInstanceBinding(CreateServiceInstanceBindingRequest request) {
 
-		ServiceInstanceBinding binding = bindingRepository.findOne(bindingId);
-		if (binding != null) {
-			throw new ServiceInstanceBindingExistsException(serviceInstanceId, bindingId);
-		}
+        String bindingId = request.getBindingId();
+        String serviceInstanceId = request.getServiceInstanceId();
 
-		String database = serviceInstanceId;
-		String username = bindingId;
+        ServiceInstanceBinding binding = bindingRepository.findOne(bindingId);
+        if (binding != null) {
+            throw new ServiceInstanceBindingExistsException(serviceInstanceId, bindingId);
+        }
 
-		/* Generates a random password for the service instance */
-		String password = RandomStringUtils.randomAlphanumeric(20);
-		
+        String database = serviceInstanceId;
+        String username = bindingId;
 
-		mongo.createUser(database, username, password);
-		
-		Map<String, Object> credentials = Collections.singletonMap("uri", (Object) mongo.getConnectionString(database, username, password));
+	/* Generates a random password for the service instance */
+	String password = RandomStringUtils.randomAlphanumeric(20);
 
-		binding = new ServiceInstanceBinding(bindingId, serviceInstanceId, credentials, null, request.getBoundAppGuid());
-		bindingRepository.save(binding);
-		
-		return new CreateServiceInstanceAppBindingResponse().withCredentials(credentials);
-	}
+        // TODO check if user already exists in the DB
+        mongo.createUser(database, username, password);
 
-	@Override
-	public void deleteServiceInstanceBinding(DeleteServiceInstanceBindingRequest request) {
-		String bindingId = request.getBindingId();
-		ServiceInstanceBinding binding = getServiceInstanceBinding(bindingId);
+        Map<String, Object> credentials =
+                Collections.singletonMap("uri", (Object) mongo.getConnectionString(database, username, password));
 
-		if (binding == null) {
-			throw new ServiceInstanceBindingDoesNotExistException(bindingId);
-		}
+        binding = new ServiceInstanceBinding(bindingId, serviceInstanceId, credentials, null, request.getBoundAppGuid());
+        bindingRepository.save(binding);
 
-		mongo.deleteUser(binding.getServiceInstanceId(), bindingId);
-		bindingRepository.delete(bindingId);
-	}
+        return new CreateServiceInstanceAppBindingResponse().withCredentials(credentials);
+    }
 
-	protected ServiceInstanceBinding getServiceInstanceBinding(String id) {
-		return bindingRepository.findOne(id);
-	}
+    @Override
+    public void deleteServiceInstanceBinding(DeleteServiceInstanceBindingRequest request) {
+        String bindingId = request.getBindingId();
+        ServiceInstanceBinding binding = getServiceInstanceBinding(bindingId);
+
+        if (binding == null) {
+            throw new ServiceInstanceBindingDoesNotExistException(bindingId);
+        }
+
+        mongo.deleteUser(binding.getServiceInstanceId(), bindingId);
+        bindingRepository.delete(bindingId);
+    }
+
+    protected ServiceInstanceBinding getServiceInstanceBinding(String id) {
+        return bindingRepository.findOne(id);
+    }
 
 }

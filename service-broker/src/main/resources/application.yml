@@ -1,7 +1,3 @@
-security:
-  user:
-    name: admin
-    password: password
 mongodb:
-  host: localhost
+  host: 54.165.221.248
   port: 27017

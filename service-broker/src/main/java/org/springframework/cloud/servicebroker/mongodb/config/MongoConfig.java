@@ -1,40 +1,49 @@
 package org.springframework.cloud.servicebroker.mongodb.config;
 
 import java.net.UnknownHostException;
+import java.util.Arrays;
 
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
-import com.mongodb.ServerAddress;
 
 @Configuration
 @EnableMongoRepositories(basePackages = "org.springframework.cloud.servicebroker.mongodb.repository")
-public class MongoConfig extends AbstractMongoConfiguration {
+public class MongoConfig {
 
-	@Override
-	protected String getDatabaseName() {
-		return "mongodb-service-broker";
-	}
-
-	@Value("${mongodb.host:localhost}")
+	//@Value("${mongodb.host:54.165.221.248}")
+	@Value("${MONGODB_HOST}")
 	private String host;
 
-	@Value("${mongodb.port:27017}")
+	//@Value("${mongodb.port:27017}")
+	@Value("${MONGODB_PORT}")
 	private int port;
+
+	//@Value("${mongodb.username:admin}")
+	@Value("${MONGODB_USERNAME}")
+	private String username;
+
+	//@Value("${mongodb.password:password}")
+	@Value("${MONGODB_PASSWORD}")
+	private String password;
+
+	//@Value("${mongodb.database:admin}")
+	@Value("${MONGODB_DATABASE}")
+	private String database;
+
+
 
 	@Bean
 	public MongoClient mongoClient() throws UnknownHostException {
-		return new MongoClient(new ServerAddress(host, port));
-	}
+		MongoCredential credentialsList = MongoCredential.createCredential(username,database,password.toCharArray());
+		return new MongoClient(new ServerAddress(host, port),Arrays.asList(credentialsList));
 
-	@Override
-	public Mongo mongo() throws Exception {
-		return mongoClient();
 	}
-
+	
 }
